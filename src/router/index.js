@@ -1,6 +1,6 @@
-import Login from "@/components/Login.vue";
-import TodoList from "@/components/TodoList.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from '@/components/Login.vue';
+import TodoList from '@/components/TodoList.vue';
 
 const routes = [
     {
@@ -16,20 +16,20 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(),
     routes
 })
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login']
-    const authRequired = !publicPages.includes(to.path)
-    const loggedIn = localStorage.getItem('user')
+    const publicPages = ['/login'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('user');
 
     if (authRequired && !loggedIn) {
-        return next('/login')
+        return next('/login');
     }
 
-    next()
+    next();
 })
 
-export default router
+export default router;
